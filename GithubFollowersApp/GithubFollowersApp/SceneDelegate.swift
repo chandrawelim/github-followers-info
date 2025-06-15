@@ -7,13 +7,22 @@
 
 import UIKit
 import GithubFollowers
+import Combine
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    private lazy var httpClient: HTTPClient = {
+        URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
+    }()
+    
+    private lazy var baseURL = URL(string: "https://api.github.com")!
 
     private lazy var navigationController = UINavigationController(
-        rootViewController: SearchUIComposer.searchComposed()
+        rootViewController: SearchUIComposer.searchComposed(
+            followerLoader: makeFollowerLoader()
+        )
     )
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -31,5 +40,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func configureNavigationBar() {
         UINavigationBar.appearance().tintColor = .systemGreen
+    }
+    
+    private func makeFollowerLoader() -> (String, Int) -> AnyPublisher<[Follower], Error> {
+        return { [httpClient, baseURL] username, page in
+            let url = FollowerEndpoint.getFollowers(username: username, page: page).url(baseURL: baseURL)
+            
+            return httpClient
+                .getPublisher(url: url)
+                .tryMap(FollowerMapper.map)
+                .eraseToAnyPublisher()
+        }
     }
 }

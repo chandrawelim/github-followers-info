@@ -6,14 +6,20 @@
 //
 
 import UIKit
+import Combine
 import GithubFollowers
 import GithubFollowersiOS
 
 class SearchUIComposer {
-    static func searchComposed() -> SearchVC {
+    static func searchComposed(
+        followerLoader: @escaping (String, Int) -> AnyPublisher<[Follower], Error>
+    ) -> SearchVC {
         let searchVC = SearchVC()
         searchVC.createFollowerListVC = { username in
-            return UIViewController()
+            return FollowerUIComposer.followersComposedWith(
+                username: username,
+                followerLoader: followerLoader
+            )
         }
         return searchVC
     }
