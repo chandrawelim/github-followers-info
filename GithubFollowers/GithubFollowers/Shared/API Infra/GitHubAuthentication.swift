@@ -8,7 +8,7 @@
 import Foundation
 
 public struct GitHubAuthentication {
-    public static let token = "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"
+    public static let token = "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"
     
     public static func addAuthHeaders(to request: inout URLRequest) {
         request.addValue("application/vnd.github+json", forHTTPHeaderField: "Accept")

@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+public struct Follower: Hashable {
+    
+    public let login: String
+    public let avatarUrl: URL?
+
+    public init(login: String,
+                avatarUrl: URL?) {
+        self.login = login
+        self.avatarUrl = avatarUrl
+    }
+}
+
