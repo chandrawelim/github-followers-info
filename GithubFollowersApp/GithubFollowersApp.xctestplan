@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "CCEE087B-410F-4BD1-849E-F4B3124453F5",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:GithubFollowersApp.xcodeproj",
+      "identifier" : "8551F0332DFF2587006F03CE",
+      "name" : "GithubFollowersApp"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:GithubFollowersApp.xcodeproj",
+        "identifier" : "8551F0492DFF2588006F03CE",
+        "name" : "GithubFollowersAppTests"
+      }
+    }
+  ],
+  "version" : 1
+}
