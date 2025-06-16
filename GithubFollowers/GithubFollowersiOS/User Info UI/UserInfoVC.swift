@@ -22,6 +22,7 @@ public class UserInfoVC: GFDataLoadingVC {
     
     public var username: String!
     public var userInfoPresenter: UserInfoPresenter?
+    private var repoPresenter: RepoPresenter?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +62,12 @@ public class UserInfoVC: GFDataLoadingVC {
     func configureUIElements(with user: UserInfo) {
         self.add(childVC: GFUserInfoHeaderVC(user: user), to: self.headerView)
         self.add(childVC: GFRepoItemVC(user: user, delegate: self), to: self.itemViewOne)
+        
+        let repoListVC = GFRepoItemListVC(username: user.login)
+        if let repoPresenter = self.repoPresenter {
+            repoListVC.set(presenter: repoPresenter)
+            self.add(childVC: repoListVC, to: self.repoListView)
+        }
     }
     
     func layoutUI() {
@@ -99,6 +106,10 @@ public class UserInfoVC: GFDataLoadingVC {
         childVC.didMove(toParent: self)
     }
     
+    public func set(repoPresenter: RepoPresenter) {
+        self.repoPresenter = repoPresenter
+    }
+    
     @objc func dismissVC() {
         dismiss(animated: true)
     }
@@ -132,4 +143,3 @@ extension UserInfoVC: GFRepoItemVCDelegate {
         presentSafariVC(with: url)
     }
 }
-

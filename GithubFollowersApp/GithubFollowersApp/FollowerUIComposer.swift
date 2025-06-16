@@ -15,7 +15,8 @@ final class FollowerUIComposer {
     static func followersComposedWith(
         username: String,
         followerLoader: @escaping (String, Int) -> AnyPublisher<[Follower], Error>,
-        userInfoLoader: @escaping (String) -> AnyPublisher<UserInfo, Error>
+        userInfoLoader: @escaping (String) -> AnyPublisher<UserInfo, Error>,
+        repoLoader: @escaping (String) -> AnyPublisher<[Repo], Error>
     ) -> FollowerListVC {
         let followerListVC = FollowerListVC(username: username)
         
@@ -32,7 +33,8 @@ final class FollowerUIComposer {
         followerListVC.makeUserInfoVC = { username in
             return UserInfoUIComposer.userInfoComposed(
                 username: username,
-                userInfoLoader: userInfoLoader
+                userInfoLoader: userInfoLoader,
+                repoLoader: repoLoader
             )
         }
         

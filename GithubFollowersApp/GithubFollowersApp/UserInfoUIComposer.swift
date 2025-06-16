@@ -14,7 +14,8 @@ public final class UserInfoUIComposer {
     
     public static func userInfoComposed(
         username: String,
-        userInfoLoader: @escaping (String) -> AnyPublisher<UserInfo, Error>
+        userInfoLoader: @escaping (String) -> AnyPublisher<UserInfo, Error>,
+        repoLoader: @escaping (String) -> AnyPublisher<[Repo], Error>
     ) -> UserInfoVC {
         
         let userInfoVC = UserInfoVC()
@@ -28,8 +29,14 @@ public final class UserInfoUIComposer {
             errorPresenter: errorPresenter
         )
         
+        let repoPresenter = RepoPresenter(
+            repoLoader: repoLoader,
+            errorPresenter: errorPresenter
+        )
+        
         userInfoVC.username = username
         userInfoVC.userInfoPresenter = presenter
+        userInfoVC.set(repoPresenter: repoPresenter)
         
         return userInfoVC
     }
