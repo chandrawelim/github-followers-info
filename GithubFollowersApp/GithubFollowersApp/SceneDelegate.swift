@@ -21,7 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private lazy var navigationController = UINavigationController(
         rootViewController: SearchUIComposer.searchComposed(
-            followerLoader: makeFollowerLoader()
+            followerLoader: makeFollowerLoader(),
+            userInfoLoader: makeUserInfoLoader()
         )
     )
     
@@ -49,6 +50,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return httpClient
                 .getPublisher(url: url)
                 .tryMap(FollowerMapper.map)
+                .eraseToAnyPublisher()
+        }
+    }
+    
+    private func makeUserInfoLoader() -> (String) -> AnyPublisher<UserInfo, Error> {
+        return { [httpClient, baseURL] username in
+            let url = UserInfoEndpoint.get(username: username).url(baseURL: baseURL)
+            
+            return httpClient
+                .getPublisher(url: url)
+                .tryMap(UserInfoMapper.map)
                 .eraseToAnyPublisher()
         }
     }

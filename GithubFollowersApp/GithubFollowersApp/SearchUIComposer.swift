@@ -12,16 +12,17 @@ import GithubFollowersiOS
 
 class SearchUIComposer {
     static func searchComposed(
-        followerLoader: @escaping (String, Int) -> AnyPublisher<[Follower], Error>
+        followerLoader: @escaping (String, Int) -> AnyPublisher<[Follower], Error>,
+        userInfoLoader: @escaping (String) -> AnyPublisher<UserInfo, Error>
     ) -> SearchVC {
         let searchVC = SearchVC()
         searchVC.createFollowerListVC = { username in
             return FollowerUIComposer.followersComposedWith(
                 username: username,
-                followerLoader: followerLoader
+                followerLoader: followerLoader,
+                userInfoLoader: userInfoLoader
             )
         }
         return searchVC
     }
 }
-

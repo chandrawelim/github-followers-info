@@ -11,11 +11,11 @@ import GithubFollowersiOS
 import Combine
 
 final class FollowerUIComposer {
-    private init() {}
     
     static func followersComposedWith(
         username: String,
-        followerLoader: @escaping (String, Int) -> AnyPublisher<[Follower], Error>
+        followerLoader: @escaping (String, Int) -> AnyPublisher<[Follower], Error>,
+        userInfoLoader: @escaping (String) -> AnyPublisher<UserInfo, Error>
     ) -> FollowerListVC {
         let followerListVC = FollowerListVC(username: username)
         
@@ -29,6 +29,12 @@ final class FollowerUIComposer {
         )
             
         followerListVC.followerPresenter = followerPresenter
+        followerListVC.makeUserInfoVC = { username in
+            return UserInfoUIComposer.userInfoComposed(
+                username: username,
+                userInfoLoader: userInfoLoader
+            )
+        }
         
         return followerListVC
     }

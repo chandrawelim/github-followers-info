@@ -105,6 +105,10 @@ extension FollowerListVC: UICollectionViewDelegate {
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let follower = followers[indexPath.item]
+        
+        let userInfoVC = makeUserInfoVC(follower.login)
+        let navController = UINavigationController(rootViewController: userInfoVC)
+        present(navController, animated: true)
     }
 }
 
