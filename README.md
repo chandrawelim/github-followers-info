@@ -2,6 +2,24 @@
 
 A Swift iOS application for viewing GitHub user followers and repository information.
 
+## 📱 Screenshots
+
+<div align="center">
+  <img src="screenshots/search_screen.png" width="200" alt="Search Screen" />
+  <img src="screenshots/followers_list.png" width="200" alt="Followers List" />
+  <img src="screenshots/user_profile.png" width="200" alt="User Profile" />
+  <img src="screenshots/github_profile.png" width="200" alt="GitHub Profile" />
+</div>
+
+*From left to right: Search Screen, Followers List, User Profile with Repositories, GitHub Profile Integration*
+
+### 🎯 Feature Showcase
+
+1. **Search Interface**: Clean, minimalist search screen with GitHub branding and username input validation
+2. **Followers Grid**: Responsive collection view displaying follower avatars with smooth scrolling and infinite pagination
+3. **User Profiles**: Comprehensive user information including bio, location, follower/following counts, and repository listings
+4. **GitHub Integration**: Seamless integration with GitHub.com through in-app Safari for viewing complete profiles
+
 ## Requirements
 
 - Xcode 16
