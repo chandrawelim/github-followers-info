@@ -23,7 +23,6 @@ class GFRepoItemListVC: GFDataLoadingVC {
     
     var dataSource: DataSource!
     var username: String!
-    var repositories: [Repo] = []
     
     private var presenter: RepoPresenter?
     
@@ -41,7 +40,8 @@ class GFRepoItemListVC: GFDataLoadingVC {
         configureHeaderView()
         configureTableView()
         configureDataSource()
-        getRepositories()
+        presenter?.set(view: self)
+        loadRepositories()
     }
     
     func set(presenter: RepoPresenter) {
@@ -103,19 +103,9 @@ class GFRepoItemListVC: GFDataLoadingVC {
         }
     }
     
-    private func getRepositories() {
-        guard let username = username, let presenter = presenter else { return }
-        
-        presenter.loadRepositories(username: username) { [weak self] repos in
-            guard let self = self else { return }
-            self.repositories = repos
-            self.updateData(with: repos)
-            
-            if repos.isEmpty {
-                let message = "This user doesn't have any public repositories yet."
-                self.showEmptyStateView(with: message, in: self.view)
-            }
-        }
+    private func loadRepositories() {
+        guard let username = username else { return }
+        presenter?.loadRepositories(username: username)
     }
     
     private func updateData(with repos: [Repo]) {
@@ -130,9 +120,20 @@ extension GFRepoItemListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let repo = repositories[indexPath.row]
+        guard let repo = presenter?.repository(at: indexPath.row) else { return }
         guard let url = URL(string: repo.url) else { return }
         presentSafariVC(with: url)
+    }
+}
+
+// MARK: - RepoView
+extension GFRepoItemListVC: RepoView {
+    public func displayRepositories(_ repositories: [Repo]) {
+        updateData(with: repositories)
+    }
+    
+    public func displayEmptyState(message: String) {
+        showEmptyStateView(with: message, in: view)
     }
 }
 
