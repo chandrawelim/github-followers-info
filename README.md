@@ -7,6 +7,7 @@ A Swift iOS application for viewing GitHub user followers and repository informa
 - Xcode 16
 - iOS 18.0+
 - Swift 5.0+
+  
 ![iOS](https://img.shields.io/badge/iOS-18.0+-blue.svg) ![Swift](https://img.shields.io/badge/Swift-5.0+-orange.svg) ![Xcode](https://img.shields.io/badge/Xcode-16-blue.svg)
 
 ## Features
