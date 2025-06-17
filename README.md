@@ -14,7 +14,14 @@ A Swift iOS application for viewing GitHub user followers and repository informa
 - View user profile information
 - Display user repositories
 - Clean, modern UI with snapshot testing
+- **Dynamic Type support** for enhanced accessibility
 - Modular architecture with separation of concerns
+
+#### Accessibility Benefits
+- Users with visual impairments can increase text size system-wide
+- All text in the app automatically scales from extra small to accessibility extra large
+- Maintains design proportions while ensuring readability
+- Complies with iOS accessibility guidelines
 
 ## Configuration
 
@@ -77,7 +84,7 @@ The project includes unit tests and snapshot tests. To run tests:
 The project follows a modular architecture with clear separation of concerns:
 
 - **GithubFollowers**: Core business logic and API layer
-- **GithubFollowersiOS**: UI components and view controllers
+- **GithubFollowersiOS**: UI components and view controllers with Dynamic Type support
 - **GithubFollowersApp**: App composition and dependency injection
 
 ### API Integration

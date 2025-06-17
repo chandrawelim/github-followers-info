@@ -136,6 +136,7 @@ extension GFRepoItemListVC: RepoView {
         let emptyLabel = GFBodyLabel(textAlignment: .center)
         emptyLabel.text = message
         emptyLabel.textColor = .secondaryLabel
+        emptyLabel.numberOfLines = 3
         
         view.addSubview(emptyLabel)
         emptyLabel.translatesAutoresizingMaskIntoConstraints = false

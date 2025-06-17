@@ -20,12 +20,17 @@ class GFSecondaryTitleLabel: UILabel {
     
     convenience init(fontSize: CGFloat) {
         self.init(frame: .zero)
-        self.font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
+        
+        // Create custom font that scales with Dynamic Type but maintains relative size
+        let fontMetrics = UIFontMetrics(forTextStyle: .subheadline)
+        let customFont = UIFont.systemFont(ofSize: fontSize, weight: .medium)
+        self.font = fontMetrics.scaledFont(for: customFont)
     }
     
     private func _configure() {
         textColor = .secondaryLabel
         adjustsFontSizeToFitWidth = true
+        adjustsFontForContentSizeCategory = true
         minimumScaleFactor = 0.90
         lineBreakMode = .byTruncatingTail
         translatesAutoresizingMaskIntoConstraints = false

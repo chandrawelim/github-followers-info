@@ -16,6 +16,7 @@ final class SearchSnapshotTests: XCTestCase {
         
         assert(snapshot: sut.snapshot(for: .iPhone(style: .light)), named: "SEARCH_light")
         assert(snapshot: sut.snapshot(for: .iPhone(style: .dark)), named: "SEARCH_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone(style: .light, contentSize: .extraExtraExtraLarge)), named: "SEARCH_light_extraExtraExtraLarge")
     }
     
     private func makeSUT() -> SearchVC {

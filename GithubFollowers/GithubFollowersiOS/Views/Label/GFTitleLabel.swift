@@ -21,12 +21,18 @@ class GFTitleLabel: UILabel {
     convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
         self.init(frame: .zero)
         self.textAlignment = textAlignment
-        self.font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
+        self.font = UIFont.preferredFont(forTextStyle: .title2)
+        
+        // Create custom font that scales with Dynamic Type but maintains relative size
+        let fontMetrics = UIFontMetrics(forTextStyle: .title2)
+        let customFont = UIFont.systemFont(ofSize: fontSize, weight: .bold)
+        self.font = fontMetrics.scaledFont(for: customFont)
     }
     
     private func _configure() {
         textColor = .label
         adjustsFontSizeToFitWidth = true
+        adjustsFontForContentSizeCategory = true
         minimumScaleFactor = 0.9
         lineBreakMode = .byTruncatingTail
         translatesAutoresizingMaskIntoConstraints = false
