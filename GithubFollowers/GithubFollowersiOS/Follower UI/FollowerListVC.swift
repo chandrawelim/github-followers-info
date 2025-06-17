@@ -15,8 +15,6 @@ public class FollowerListVC: GFDataLoadingVC {
     }
     
     var username: String!
-    var followers: [Follower] = []
-    var page: Int = 1
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
@@ -38,8 +36,9 @@ public class FollowerListVC: GFDataLoadingVC {
         super.viewDidLoad()
         configureViewController()
         configureCollectionView()
-        getFollowers(username: username, page: page)
         configureDataSource()
+        followerPresenter?.set(view: self)
+        loadFollowers()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -47,14 +46,12 @@ public class FollowerListVC: GFDataLoadingVC {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func configureViewController() {
+    private func configureViewController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
-        
-        view.backgroundColor = .systemBackground
     }
     
-    func configureCollectionView() {
+    private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
         view.addSubview(collectionView)
         collectionView.backgroundColor = .systemBackground
@@ -62,28 +59,7 @@ public class FollowerListVC: GFDataLoadingVC {
         collectionView.delegate = self
     }
     
-    func getFollowers(username: String, page: Int) {
-        followerPresenter?.loadFollowers(username: username, page: page) { [weak self] followers in
-            guard let self = self else { return }
-            
-            self.updateUI(with: followers)
-        }
-    }
-    
-    func updateUI(with followers: [Follower]) {
-        self.followers.append(contentsOf: followers)
-        
-        if self.followers.isEmpty {
-            let message = "This user doesn't have any followers, Go follow them 😀."
-            DispatchQueue.main.async {
-                self.showEmptyStateView(with: message, in: self.view)
-                return
-            }
-        }
-        self.updateData(on: self.followers)
-    }
-    
-    func configureDataSource() {
+    private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, follower) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCell.reuseID, for: indexPath) as! FollowerCell
             cell.set(follower: follower)
@@ -91,24 +67,37 @@ public class FollowerListVC: GFDataLoadingVC {
         })
     }
     
-    func updateData(on followers: [Follower]) {
+    private func loadFollowers() {
+        followerPresenter?.loadFollowers(username: username)
+    }
+    
+    private func updateData(with followers: [Follower]) {
         var snapShot = NSDiffableDataSourceSnapshot<Section, Follower>()
         snapShot.appendSections([.main])
         snapShot.appendItems(followers)
-        DispatchQueue.main.async {
-            self.dataSource.apply(snapShot, animatingDifferences: true)
-        }
+        dataSource.apply(snapShot, animatingDifferences: true)
     }
 }
 
 extension FollowerListVC: UICollectionViewDelegate {
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let follower = followers[indexPath.item]
+        guard let follower = followerPresenter?.follower(at: indexPath.item) else { return }
         
         let userInfoVC = makeUserInfoVC(follower.login)
         let navController = UINavigationController(rootViewController: userInfoVC)
         present(navController, animated: true)
+    }
+}
+
+// MARK: - FollowerView
+extension FollowerListVC: FollowerView {
+    public func displayFollowers(_ followers: [Follower]) {
+        updateData(with: followers)
+    }
+    
+    public func displayEmptyState(message: String) {
+        showEmptyStateView(with: message, in: view)
     }
 }
 

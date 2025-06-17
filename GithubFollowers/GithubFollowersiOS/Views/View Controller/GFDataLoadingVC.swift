@@ -36,10 +36,8 @@ public class GFDataLoadingVC: UIViewController {
     }
     
     func dismissLoadingView() {
-        DispatchQueue.main.async {
-            self.containerView.removeFromSuperview()
-            self.containerView = nil
-        }
+        containerView.removeFromSuperview()
+        containerView = nil
     }
     
     func showEmptyStateView(with message: String, in view: UIView) {
