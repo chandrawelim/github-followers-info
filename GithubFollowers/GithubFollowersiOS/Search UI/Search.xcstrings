@@ -35,6 +35,23 @@
         }
       }
     },
+    "get_followers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Followers"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フォロワーを取得"
+          }
+        }
+      }
+    },
     "please_enter_username" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -48,23 +65,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ユーザー名を入力してください。誰を検索するか必要です😀。"
-          }
-        }
-      }
-    },
-    "SEARCH_GET_FOLLOWERS" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Get Followers"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "フォロワーを取得"
           }
         }
       }

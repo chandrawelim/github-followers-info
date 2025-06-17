@@ -118,13 +118,10 @@ public extension LocalizedStringHelper {
 // MARK: - Search UI Strings
 public extension LocalizedStringHelper {
     static var getFollowers: String {
-        String(localized: "SEARCH_GET_FOLLOWERS", table: "Search", bundle: bundle)
-        
-        
-//        NSLocalizedString("SEARCH_GET_FOLLOWERS",
-//                          tableName: "Search",
-//                          bundle: bundle,
-//                          comment: "Button text to get followers")
+        NSLocalizedString("get_followers",
+                          tableName: "Search",
+                          bundle: bundle,
+                          comment: "Button text to get followers")
     }
     
     static var emptyUsername: String {
