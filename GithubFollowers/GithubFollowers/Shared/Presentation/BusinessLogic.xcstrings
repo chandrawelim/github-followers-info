@@ -1,0 +1,40 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "no_followers_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This user doesn't have any followers, Go follow them 😀."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このユーザーにはフォロワーがいません。フォローしてあげましょう😀。"
+          }
+        }
+      }
+    },
+    "no_repositories_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This user doesn't have any public repositories yet."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このユーザーはまだ公開リポジトリを持っていません。"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+} 

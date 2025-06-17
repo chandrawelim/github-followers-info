@@ -33,7 +33,7 @@ class GFRepoItemVC: GFItemInfoVC {
     private func _configureItems() {
         itemInfoViewOne.set(itemInfoType: .following, withCount: user.following)
         itemInfoViewTwo.set(itemInfoType: .followers, withCount: user.followers)
-        actionButton.set(backgroundColor: .systemPurple, title: "GitHub Profile")
+        actionButton.set(backgroundColor: .systemPurple, title: LocalizedStringHelper.githubProfile)
     }
     
     override func actionButtonTapped() {

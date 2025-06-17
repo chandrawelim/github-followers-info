@@ -55,10 +55,10 @@ class GFItemInfoView: UIView {
         switch itemInfoType {
         case .followers:
             symbolImageView.image = SFSymbols.followers
-            titleLabel.text = "Followers"
+            titleLabel.text = LocalizedStringHelper.followers
         case .following:
             symbolImageView.image = SFSymbols.following
-            titleLabel.text = "Following"
+            titleLabel.text = LocalizedStringHelper.following
         }
         
         countLabel.text = String(count)

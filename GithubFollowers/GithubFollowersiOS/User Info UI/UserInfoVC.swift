@@ -128,7 +128,7 @@ extension UserInfoVC: ResourceLoadingView {
 extension UserInfoVC: ResourceErrorView {
     public func display(_ viewModel: ResourceErrorViewModel) {
         if let message = viewModel.message {
-            presentGFAlertOnMainThread(title: "Error", message: message, buttonTitle: "OK")
+            presentGFAlertOnMainThread(title: LocalizedStringHelper.errorTitle, message: message, buttonTitle: LocalizedStringHelper.okButton)
         }
     }
 }
@@ -136,7 +136,7 @@ extension UserInfoVC: ResourceErrorView {
 extension UserInfoVC: GFRepoItemVCDelegate {
     func didTapGitHubProfile(for user: UserInfo) {
         guard let url = URL(string: user.htmlUrl) else {
-            presentGFAlertOnMainThread(title: "Invalid URL", message: "The url attached to this user is invalid", buttonTitle: "Ok")
+            presentGFAlertOnMainThread(title: LocalizedStringHelper.invalidURL, message: LocalizedStringHelper.invalidURLMessage, buttonTitle: LocalizedStringHelper.okButtonLowercase)
             return
         }
         

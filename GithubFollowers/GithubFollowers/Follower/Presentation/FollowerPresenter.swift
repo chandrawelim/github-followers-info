@@ -57,7 +57,10 @@ public final class FollowerPresenter {
                     self.followers.append(contentsOf: newFollowers)
                     
                     if self.followers.isEmpty {
-                        self.view?.displayEmptyState(message: "This user doesn't have any followers, Go follow them 😀.")
+                        self.view?.displayEmptyState(message: NSLocalizedString("no_followers_message",
+                                                                                tableName: "BusinessLogic",
+                                                                                bundle: Bundle(for: Self.self),
+                                                                                comment: "Empty state for follower"))
                     } else {
                         self.view?.displayFollowers(self.followers)
                     }

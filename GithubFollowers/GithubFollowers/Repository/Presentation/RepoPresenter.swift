@@ -50,7 +50,10 @@ public final class RepoPresenter {
                     self.repositories = repos
                     
                     if self.repositories.isEmpty {
-                        self.view?.displayEmptyState(message: "This user doesn't have any public repositories yet.")
+                        self.view?.displayEmptyState(message: NSLocalizedString("no_repositories_message",
+                                                                                tableName: "BusinessLogic",
+                                                                                bundle: Bundle(for: Self.self),
+                                                                                comment: "Empty state for follower"))
                     } else {
                         self.view?.displayRepositories(self.repositories)
                     }
