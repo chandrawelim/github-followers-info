@@ -67,6 +67,11 @@ The project includes unit tests and snapshot tests. To run tests:
 
 **Note**: This project was developed using Xcode 16. Snapshot test results may vary when using different Xcode versions or simulator configurations due to rendering differences.
 
+**Important for Snapshot Testing**: Ensure your simulator language is set to English to match the CI environment:
+- Go to `Simulator > Settings > General > Language & Region`
+- Set the language to English and remove any other languages
+- This ensures consistent snapshot test results across different environments
+
 ### Architecture
 
 The project follows a modular architecture with clear separation of concerns:
