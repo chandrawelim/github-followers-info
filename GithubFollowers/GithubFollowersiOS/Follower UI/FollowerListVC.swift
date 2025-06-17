@@ -116,7 +116,7 @@ extension FollowerListVC: ResourceLoadingView {
 extension FollowerListVC: ResourceErrorView {
     public func display(_ viewModel: ResourceErrorViewModel) {
         if let message = viewModel.message {
-            presentGFAlertOnMainThread(title: "Error", message: message, buttonTitle: "OK")
+            presentGFAlertOnMainThread(title: LocalizedStringHelper.errorTitle, message: message, buttonTitle: LocalizedStringHelper.okButton)
         }
     }
 }

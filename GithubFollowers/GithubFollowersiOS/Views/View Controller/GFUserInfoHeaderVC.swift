@@ -39,8 +39,8 @@ class GFUserInfoHeaderVC: UIViewController {
         avatarImageView.downloadImage(fromURL: user.avatarUrl.absoluteString)
         usernameLabel.text = user.login
         nameLabel.text = user.name ?? "-"
-        locationLabel.text = user.location ?? "No Location"
-        bioLabel.text = user.bio ?? "No Bio"
+        locationLabel.text = user.location ?? LocalizedStringHelper.noLocation
+        bioLabel.text = user.bio ?? LocalizedStringHelper.noBio
         bioLabel.numberOfLines = 3
         
         locationImageView.image = SFSymbols.location

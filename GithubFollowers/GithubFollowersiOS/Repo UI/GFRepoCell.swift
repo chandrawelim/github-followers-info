@@ -33,9 +33,9 @@ class GFRepoCell: UITableViewCell {
     
     func set(repo: Repo) {
         repoNameLabel.text = repo.name
-        languageLabel.text = repo.language ?? "Unknown"
+        languageLabel.text = repo.language ?? LocalizedStringHelper.unknown
         starsLabel.text = "\(repo.stars)"
-        descriptionLabel.text = repo.description ?? "No description available"
+        descriptionLabel.text = repo.description ?? LocalizedStringHelper.noDescriptionAvailable
     }
     
     private func configure() {
