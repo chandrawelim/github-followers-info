@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
     }()
     
-    private lazy var baseURL = URL(string: "https://api.github.com")!
+    private lazy var baseURL = URL(string: Config.baseURL)!
 
     private lazy var navigationController = UINavigationController(
         rootViewController: SearchUIComposer.searchComposed(
