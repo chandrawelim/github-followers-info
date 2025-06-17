@@ -133,7 +133,19 @@ extension GFRepoItemListVC: RepoView {
     }
     
     public func displayEmptyState(message: String) {
-        showEmptyStateView(with: message, in: view)
+        let emptyLabel = GFBodyLabel(textAlignment: .center)
+        emptyLabel.text = message
+        emptyLabel.textColor = .secondaryLabel
+        
+        view.addSubview(emptyLabel)
+        emptyLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            emptyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            emptyLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+        ])
     }
 }
 
