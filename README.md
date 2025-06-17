@@ -2,6 +2,20 @@
 
 A Swift iOS application for viewing GitHub user followers and repository information.
 
+## Requirements
+
+- Xcode 16
+- iOS 18.0+
+- Swift 5.0+
+
+## Features
+
+- Browse GitHub users and their followers
+- View user profile information
+- Display user repositories
+- Clean, modern UI with snapshot testing
+- Modular architecture with separation of concerns
+
 ## Configuration
 
 This application requires a GitHub Personal Access Token to access the GitHub API.
@@ -34,3 +48,38 @@ This application requires a GitHub Personal Access Token to access the GitHub AP
 - Never commit your actual GitHub token to version control
 - The `Config.swift` file is excluded from git via `.gitignore`
 - Use the `Config-Template.swift` as a reference for the expected structure
+
+## Development
+
+### Building the Project
+
+1. Clone the repository
+2. Configure your GitHub token (see Configuration section above)
+3. Open `GithubFollowersApp.xcworkspace` in Xcode 16
+4. Build and run the project
+
+### Testing
+
+The project includes unit tests and snapshot tests. To run tests:
+
+1. Select the test target in Xcode
+2. Press `Cmd+U` to run all tests
+
+**Note**: This project was developed using Xcode 16. Snapshot test results may vary when using different Xcode versions or simulator configurations due to rendering differences.
+
+### Architecture
+
+The project follows a modular architecture with clear separation of concerns:
+
+- **GithubFollowers**: Core business logic and API layer
+- **GithubFollowersiOS**: UI components and view controllers
+- **GithubFollowersApp**: App composition and dependency injection
+
+### API Integration
+
+The app integrates with the GitHub REST API to fetch:
+- User follower lists
+- User profile information
+- User repository data
+
+All API requests are authenticated using GitHub Personal Access Tokens.
