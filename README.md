@@ -3,7 +3,6 @@
 [![iOS](https://img.shields.io/badge/iOS-18.0+-blue.svg)](https://developer.apple.com/ios/)
 [![Swift](https://img.shields.io/badge/Swift-5.0+-orange.svg)](https://swift.org/)
 [![Xcode](https://img.shields.io/badge/Xcode-16+-blue.svg)](https://developer.apple.com/xcode/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 A modern, scalable Swift iOS application for exploring GitHub users, their followers, and repository information. Built with clean architecture principles and comprehensive test coverage.
 
