@@ -1,6 +1,20 @@
 # GitHub Followers Info
 
-A Swift iOS application for viewing GitHub user followers and repository information.
+[![iOS](https://img.shields.io/badge/iOS-18.0+-blue.svg)](https://developer.apple.com/ios/)
+[![Swift](https://img.shields.io/badge/Swift-5.0+-orange.svg)](https://swift.org/)
+[![Xcode](https://img.shields.io/badge/Xcode-16+-blue.svg)](https://developer.apple.com/xcode/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+A modern, scalable Swift iOS application for exploring GitHub users, their followers, and repository information. Built with clean architecture principles and comprehensive test coverage.
+
+## 🎯 Overview
+
+GitHub Followers Info demonstrates modern iOS development practices including:
+- **Clean Architecture** with modular design
+- **Reactive Programming** using Combine framework
+- **Comprehensive Testing** with unit tests and snapshot tests
+- **Accessibility Support** with Dynamic Type and localization
+- **Modern UI** with UIKit and programmatic layouts
 
 ## 📱 Screenshots
 
@@ -13,54 +27,84 @@ A Swift iOS application for viewing GitHub user followers and repository informa
 
 *From left to right: Search Screen, Followers List, User Profile with Repositories, GitHub Profile Integration*
 
-### 🎯 Feature Showcase
+## ✨ Features
 
-1. **Search Interface**: Clean, minimalist search screen with GitHub branding and username input validation
-2. **Followers Grid**: Responsive collection view displaying follower avatars with smooth scrolling and infinite pagination
-3. **User Profiles**: Comprehensive user information including bio, location, follower/following counts, and repository listings
-4. **GitHub Integration**: Seamless integration with GitHub.com through in-app Safari for viewing complete profiles
+### Core Functionality
+- 🔍 **User Search**: Search for GitHub users with input validation
+- 👥 **Followers Browser**: Browse user followers
+- 📊 **User Profiles**: Comprehensive user information display
+- 📚 **Repository Listing**: View user's public repositories with filtering
+- 🌐 **GitHub Integration**: Seamless Safari integration for complete profiles
 
-## Requirements
+### User Experience
+- 🎨 **Modern UI**: Clean, minimalist design with smooth animations
+- ♿ **Accessibility**: Full Dynamic Type support and localization
+- 📱 **Responsive**: Optimized for all iPhone screen sizes
+- 🌙 **Dark Mode**: Native dark/light mode support
+- ⚡ **Performance**: Efficient image caching and data loading
 
-- Xcode 16
-- iOS 18.0+
-- Swift 5.0+
-  
-![Xcode](https://img.shields.io/badge/Xcode-16-blue.svg) ![iOS](https://img.shields.io/badge/iOS-18.0+-blue.svg) ![Swift](https://img.shields.io/badge/Swift-5.0+-orange.svg) 
+## 🛠 Tech Stack
 
-## Features
+### Frameworks & Technologies
+- **UIKit** - Native iOS UI framework
+- **Combine** - Reactive programming and data binding
+- **Foundation** - Core system services and utilities
+- **SafariServices** - In-app web browsing
+- **XCTest** - Unit testing framework
 
-- Browse GitHub users and their followers
-- View user profile information
-- Display user repositories
-- Clean, modern UI with snapshot testing
-- **Dynamic Type support** for enhanced accessibility
-- Modular architecture with separation of concerns
+### Architecture & Patterns
+- **Clean Architecture** - Separation of concerns with distinct layers
+- **MVP Pattern** - Model-View-Presenter for UI logic
+- **Dependency Injection** - Loose coupling and testability
+- **Repository Pattern** - Data access abstraction
+- **Composition Root** - Centralized object graph composition
 
-#### Accessibility Benefits
-- Users with visual impairments can increase text size system-wide
-- All text in the app automatically scales from extra small to accessibility extra large
-- Maintains design proportions while ensuring readability
-- Complies with iOS accessibility guidelines
+### Key Components
+- **Modular Design**: Separated into distinct frameworks
+  - `GithubFollowers` - Core business logic and API layer
+  - `GithubFollowersiOS` - UI components and view controllers
+  - `GithubFollowersApp` - App composition and dependency injection
 
-## Configuration
+### Data & Networking
+- **URLSession** - Native HTTP networking
+- **JSON Decoding** - Codable protocol for API responses
+- **Authentication** - GitHub Personal Access Token integration
+- **Error Handling** - Comprehensive error management
 
-This application requires a GitHub Personal Access Token to access the GitHub API.
+### Testing
+- **Unit Tests** - Business logic and API layer testing
+- **Snapshot Tests** - UI component visual regression testing
+- **Test Plans** - Organized test execution and CI/CD integration
 
-### Setting up your GitHub Token
+## 📋 Requirements
 
-1. **Get a GitHub Personal Access Token**
-   - Go to [GitHub Settings > Developer settings > Personal access tokens](https://github.com/settings/tokens)
-   - Click "Generate new token"
-   - Select the scopes you need (typically `public_repo` for public repositories)
+- **Xcode 16** or later
+- **iOS 18.0+** deployment target
+- **Swift 5.0+**
+- **GitHub Personal Access Token** for API access
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/yourusername/github-followers-info.git
+cd github-followers-info
+```
+
+### 2. Configure GitHub Token
+
+1. **Generate a GitHub Personal Access Token**
+   - Visit [GitHub Settings > Developer settings > Personal access tokens](https://github.com/settings/tokens)
+   - Click "Generate new token" → "Generate new token (classic)"
+   - Select scopes: `public_repo` and `read:user`
    - Copy the generated token
 
 2. **Configure the app**
-   - Copy `Config-Template.swift` to `Config.swift`
-   - Replace `"YOUR_GITHUB_TOKEN_HERE"` with your actual GitHub token
-   - The `Config.swift` file is automatically ignored by git for security
-
-3. **Example Config.swift**
+   ```bash
+   cp Config-Template.swift Config.swift
+   ```
+   
+3. **Edit Config.swift** and replace the placeholder:
    ```swift
    import Foundation
 
@@ -70,48 +114,93 @@ This application requires a GitHub Personal Access Token to access the GitHub AP
    }
    ```
 
-### Security Notes
+### 3. Build and Run
 
-- Never commit your actual GitHub token to version control
-- The `Config.swift` file is excluded from git via `.gitignore`
-- Use the `Config-Template.swift` as a reference for the expected structure
+1. Open `GithubFollowersApp.xcworkspace` in Xcode 16
+2. Select your target device or simulator
+3. Build and run (`Cmd+R`)
 
-## Development
+## 🧪 Testing
 
-### Building the Project
+### Running Tests
+```bash
+# Run all tests
+xcodebuild test -workspace GithubFollowersApp.xcworkspace -scheme GithubFollowersApp
 
-1. Clone the repository
-2. Configure your GitHub token (see Configuration section above)
-3. Open `GithubFollowersApp.xcworkspace` in Xcode 16
-4. Build and run the project
+# Or use Xcode
+# Press Cmd+U to run all tests
+```
 
-### Testing
+### Test Coverage
+- **Unit Tests**: API mappers, endpoints, and business logic
+- **Integration Tests**: HTTP client and networking layer
+- **Snapshot Tests**: UI components across different configurations
+- **App Tests**: Scene delegate and app composition
 
-The project includes unit tests and snapshot tests. To run tests:
+### Important Testing Notes
+- **Simulator Language**: Set to English for consistent snapshot results
+  - `Simulator > Settings > General > Language & Region`
+  - Remove non-English languages for CI compatibility
+- **Xcode Version**: Snapshot tests optimized for Xcode 16
 
-1. Select the test target in Xcode
-2. Press `Cmd+U` to run all tests
+## 🏗 Architecture
 
-**Note**: This project was developed using Xcode 16. Snapshot test results may vary when using different Xcode versions or simulator configurations due to rendering differences.
+### Project Structure
+```
+github-followers-info/
+├── GithubFollowers/           # Core Framework
+│   ├── GithubFollowers/       # Business Logic
+│   │   ├── Follower/         # Follower feature
+│   │   ├── Repository/       # Repository feature  
+│   │   ├── User Info/        # User info feature
+│   │   └── Shared/           # Common utilities
+│   ├── GithubFollowersiOS/   # UI Framework
+│   └── GithubFollowersTests/ # Unit Tests
+├── GithubFollowersApp/        # Main App
+│   ├── GithubFollowersApp/   # App composition
+│   └── GithubFollowersAppTests/
+└── screenshots/              # Documentation assets
+```
 
-**Important for Snapshot Testing**: Ensure your simulator language is set to English to match the CI environment:
-- Go to `Simulator > Settings > General > Language & Region`
-- Set the language to English and remove any other languages
-- This ensures consistent snapshot test results across different environments
+### Architectural Principles
+- **Separation of Concerns**: Clear boundaries between layers
+- **Dependency Inversion**: High-level modules don't depend on low-level modules
+- **Single Responsibility**: Each class has one reason to change
+- **Open/Closed**: Open for extension, closed for modification
 
-### Architecture
+### Data Flow
+1. **UI Layer** triggers user actions
+2. **Presenter** handles UI logic and coordinates
+3. **Use Cases** execute business logic
+4. **Repository** abstracts data access
+5. **API Layer** handles GitHub API communication
 
-The project follows a modular architecture with clear separation of concerns:
+## 🔐 Security
 
-- **GithubFollowers**: Core business logic and API layer
-- **GithubFollowersiOS**: UI components and view controllers with Dynamic Type support
-- **GithubFollowersApp**: App composition and dependency injection
+- **Token Protection**: `Config.swift` excluded from version control
+- **Network Security**: HTTPS-only communication
+- **Data Validation**: Input sanitization and error handling
+- **No Sensitive Data**: No hardcoded credentials or secrets
 
-### API Integration
+## 🌍 Localization & Accessibility
 
-The app integrates with the GitHub REST API to fetch:
-- User follower lists
-- User profile information
-- User repository data
+### Supported Features
+- **Dynamic Type**: All text scales with system settings
+- **Voice Over**: Screen reader compatibility
+- **Dark Mode**: System appearance support
+- **Localization**: String externalization ready
+- **Right-to-Left**: Layout adaptation support
 
-All API requests are authenticated using GitHub Personal Access Tokens.
+### Languages
+- English (primary)
+- Japanese (partial - included in project structure)
+
+## 📝 API Integration
+
+### GitHub REST API
+- **Endpoints Used**:
+  - `/users/{username}` - User information
+  - `/users/{username}/followers` - User followers
+  - `/users/{username}/repos` - User repositories
+
+⭐ **Star this repository if you found it helpful!**
